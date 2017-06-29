@@ -53,6 +53,12 @@ distdir:
 
 install:  $(GEN)/.installed
 
+update:
+	@echo "svn update $(HTTPD_DIR)..."
+	@svn update $(GEN)/$(HTTPD_DIR)/
+	@svn update $(GEN)/$(HTTPD_DIR)/srclib/apr
+	@svn update $(GEN)/$(HTTPD_DIR)//srclib/apr-util
+	
 
 ################################################################################
 # Install the local httpd

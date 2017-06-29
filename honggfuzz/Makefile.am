@@ -42,6 +42,11 @@ install:  $(GEN)/.built
 
 install-recursive: 
 
+update:
+	@echo "pulling honggfuzz from github..."
+	@cd $(GEN)/$(HF_DIR) && git pull
+	@cd $(GEN)/$(HF_DIR) && git checkout $(HF_BRANCH)
+
 ################################################################################
 # Install the local honggfuzz
 #

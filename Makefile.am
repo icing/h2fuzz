@@ -31,7 +31,7 @@ HTTPD_ROOT     = @HTTPD_ROOT@
 HONGGFUZZ      = @HONGGFUZZ@
 HF_APACHE      = @HF_HOME@/examples/apache
 
-.PHONY: clean
+.PHONY: clean update
 
 
 all: install
@@ -39,6 +39,9 @@ all: install
 distdir:
 	@mkdir -p $(distdir)
 	@tar cf - Makefile bin *.txt *.sh | (cd $(distdir) && tar xf - )
+
+update: update-recursive
+
 
 fuzz: install $(HTTPD_ROOT)/conf/httpd-h2.conf
 	$(HONGGFUZZ) -z -P -f $(HF_APACHE)/corpus_http2 -w $(HF_APACHE)/httpd.wordlist -- \
