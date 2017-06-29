@@ -1,0 +1,13 @@
+
+svn co https://svn.apache.org/repos/asf/httpd/httpd/trunk httpd
+svn co http://svn.apache.org/repos/asf/apr/apr/branches/1.5.x apr
+svn co http://svn.apache.org/repos/asf/apr/apr-util/branches/1.5.x apr-util
+
+unzip ~/projects/honggfuzz-master.zip 
+mv honggfuzz-master honggfuzz
+
+cd honggfuzz && make
+
+cd apr && ./buildconf
+cd apr-util && ./buildconf
+cd httpd && ./buildconf
