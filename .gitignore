@@ -31,3 +31,5 @@ Makefile
 m4
 conf/*.conf
 gen
+HONGGFUZZ.REPORT.TXT
+*.fuzz

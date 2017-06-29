@@ -27,10 +27,8 @@ HTTPD_CONF      = --prefix=$(prefix) \
 	--enable-mods-static=few \
 	--enable-http2 
 
-HTTPD_CONF_ENV  = CC="@HF_CC@" CXX="@HF_CC@" CFLAGS="-ggdb O3 -fsanitize=address" LDFLAGS="-lpthread -lasan"
-
-HTTPD_CONF_ENV += PKG_CONFIG_PATH=$(prefix)/lib/pkgconfig \
-    LDFLAGS=-L$(prefix)/lib CFLAGS=-I$(prefix)/include
+#HTTPD_CONF_ENV  = CC="@HF_CC@" CXX="@HF_CC@" CFLAGS="-ggdb O3 -fsanitize=address" LDFLAGS="-lpthread -lasan"
+HTTPD_CONF_ENV  = CC="@HF_CC@" CXX="@HF_CC@" CFLAGS="@HF_CFLAGS@" LDFLAGS="@HF_CFLAGS@"
 
 APR_VERSION     = @APR_VERSION@
 APR_UTIL_VERSION= @APR_UTIL_VERSION@
