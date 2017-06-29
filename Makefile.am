@@ -13,7 +13,7 @@
 # limitations under the License.
 #
 SUBDIRS         = @BUILD_SUBDIRS@
-DIST_SUBDIRS    = nghttp2 httpd
+DIST_SUBDIRS    = honggfuzz nghttp2 httpd
 
 ACLOCAL_AMFLAGS = -I m4
 
@@ -27,6 +27,7 @@ GEN            = gen
 
 APACHECTL      = @APACHECTL@ -d $(SERVER_DIR)
 HTTPD          = @HTTPD@
+HTTPD_ROOT     = @HTTPD_ROOT@
 HONGGFUZZ      = @HONGGFUZZ@
 HF_APACHE      = @HF_HOME@/examples/apache
 
@@ -35,12 +36,15 @@ HF_APACHE      = @HF_HOME@/examples/apache
 
 all: install
 
-clean:
-	@rm -rf $(GEN) apr/gen apr-util/gen nghttp2/gen httpd/gen
-
 distdir:
 	@mkdir -p $(distdir)
 	@tar cf - Makefile bin *.txt *.sh | (cd $(distdir) && tar xf - )
 
-fuzz: install
-	$(HONGGFUZZ) -z -P -f $(HF_APACHE)/corpus_http2 -w $(HF_APACHE)/httpd.wordlist -- $(prefix)/bin/httpd -X -f $(prefix)/conf/httpd.conf.h2
+fuzz: install $(HTTPD_ROOT)/conf/httpd-h2.conf
+	$(HONGGFUZZ) -z -P -f $(HF_APACHE)/corpus_http2 -w $(HF_APACHE)/httpd.wordlist -- \
+		$(HTTPD_ROOT)/bin/httpd -X -f conf/httpd-h2.conf
+
+$(HTTPD_ROOT)/conf/httpd-h2.conf: conf/httpd-h2.conf
+	@mkdir -p $(HTTPD_ROOT)/conf
+	@cp conf/httpd-h2.conf $(HTTPD_ROOT)/conf/
+

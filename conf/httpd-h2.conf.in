@@ -1,0 +1,27 @@
+ServerRoot "@HTTPD_ROOT@"
+ServerName jag
+Timeout 300
+KeepAlive On
+MaxKeepAliveRequests 100
+MaxConnectionsPerChild 0
+ListenBacklog 1023
+KeepAliveTimeout 5
+HostnameLookups Off
+ErrorLog @HTTPD_ROOT@/logs/error_log
+LogLevel crit
+LogLevel debug
+Listen 127.0.0.1:8080
+PidFile @HTTPD_ROOT@/apache-pid
+#Protocols h2 h2c http/1.1
+Protocols h2c
+H2Direct on
+H2Upgrade on
+H2SerializeHeaders on
+<Directory />
+	Options FollowSymLinks
+	AllowOverride None
+</Directory>
+<Directory @HTTPD_ROOT@/htdocs>
+	Options Indexes FollowSymLinks
+	AllowOverride None
+</Directory>
