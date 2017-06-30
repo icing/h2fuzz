@@ -30,9 +30,31 @@ Then you run
 > ./configure --prefix=$PWD/gen/apache
 > make
 ```
-and it should build and install everything in `gen/apache` locally.
+and it should build and install everything in `gen/apache` locally. (*Caveat*: the httpd config places its pid file in `/tmp` so that several honggfguzz setups can better work with each other.)
 
 The configuration if httpd is minimal (for now), so there is no need to OpenSSL and other third party libs. A new c-lang is the major dependency.
+
+## Usage
+
+The following `make` commands are available:
+
+```
+make fuzz       #run honggfuzz endlessly on the installed httpd
+make clean      #remove compilation results in subdirs
+make install    #default target, checks out sources, builds and 
+                #installs them in $prefix
+make update     #performs git pull/svn update on honggfuzz and httpd copies
+```
+
+## ToDos
+
+Some ideas around this fuzzing:
+
+* h2fuzz uses some parts of the honggfuzz test files, but has copies of the httpd patch and httpd config file. Updates of these in honggfuzz are not effective in h2fuzz.
+* `make reconfigure` would be nice to run all subdir `./configure` again and prep a new build&install
+* top `./configure` should take arguments to influence CFLAGS. Other `-fsanitize=xxx` would be interesting
+* `make update` in httpd should revert and re-apply patches
+* would be nice of drop httpd patches just in a dir and have them applied for testing
 
 ## Credits
 
