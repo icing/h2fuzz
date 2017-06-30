@@ -44,6 +44,7 @@ update: update-recursive
 
 
 fuzz: install $(HTTPD_ROOT)/conf/httpd-h2.conf
+	@rm -f $(HTTPD_ROOT)/logs/*log
 	$(HONGGFUZZ) -z -P -f $(HF_APACHE)/corpus_http2 -w $(HF_APACHE)/httpd.wordlist -- \
 		$(HTTPD_ROOT)/bin/httpd -X -f conf/httpd-h2.conf
 
