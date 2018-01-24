@@ -75,7 +75,7 @@ HONGGFUZZ="${HF_HOME}/honggfuzz"
 # nghttp2 
 ################################################################################
 
-NGHTTP2_VERSION=1.23.1
+NGHTTP2_VERSION=1.29.0
 NGHTTP2_DEPS=""
 
 BUILD_SUBDIRS="$BUILD_SUBDIRS nghttp2"
