@@ -18,7 +18,8 @@ CURL_OPTS       = -k --progress-bar
 
 HTTPD_BRANCH    = @HTTPD_BRANCH@
 HTTPD_DIR       = httpd-$(HTTPD_BRANCH)
-HTTPD_URL       = https://svn.apache.org/repos/asf/httpd/httpd/$(HTTPD_BRANCH)
+HTTPD_SVN_DIR   = @HTTPD_SVN_DIR@
+HTTPD_URL       = https://svn.apache.org/repos/asf/httpd/httpd/$(HTTPD_SVN_DIR)
 
 HTTPD_CONF      = --prefix=$(prefix) \
 	--enable-nghttp2-staticlib-deps \
@@ -95,7 +96,7 @@ $(GEN)/.patched: \
 	@echo -n patching httpd...
 	rm -f $(GEN)/$(HTTPD_DIR)/compile.sh
 	svn revert -R $(GEN)/$(HTTPD_DIR)/
-	test -f httpd-$(HTTPD_BRANCH).patch && patch -p1 -d $(GEN)/$(HTTPD_DIR)/  < httpd-$(HTTPD_BRANCH).patch
+	test -f httpd-$(HTTPD_BRANCH).patch && patch -p0 -d $(GEN)/$(HTTPD_DIR)/  < httpd-$(HTTPD_BRANCH).patch
 	@echo done.
 	@touch $(GEN)/.patched
 

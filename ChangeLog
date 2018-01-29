@@ -2,6 +2,7 @@ v0.0.2
 ------
  * Updated httpd patches for new tcp server fuzzing options
  * adding xcode project
+ * easier setup of 2.4.x branch in configure.ac
 
 v0.0.1
 ------
