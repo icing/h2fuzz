@@ -9,7 +9,6 @@
 /* Begin PBXFileReference section */
 		B21871C3201F434600FD9CFC /* aclocal.m4 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = aclocal.m4; sourceTree = "<group>"; };
 		B21888D8201F435000FD9CFC /* Makefile.am */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Makefile.am; sourceTree = "<group>"; };
-		B21888D9201F435000FD9CFC /* httpd-branches-2.4.x.patch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "httpd-branches-2.4.x.patch"; sourceTree = "<group>"; };
 		B21888DB201F435000FD9CFC /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		B21888DC201F435000FD9CFC /* Makefile.am */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Makefile.am; sourceTree = "<group>"; };
 		B21888DD201F435000FD9CFC /* COPYING */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = COPYING; sourceTree = "<group>"; };
@@ -19,9 +18,9 @@
 		B2188DA8201F435300FD9CFC /* ChangeLog */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ChangeLog; sourceTree = "<group>"; };
 		B218C6A8201F43AC00FD9CFC /* Makefile.am */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Makefile.am; sourceTree = "<group>"; };
 		B218C6AA201F43AD00FD9CFC /* README */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README; sourceTree = "<group>"; };
-		B218C6AC201F43AE00FD9CFC /* httpd-h2.conf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "httpd-h2.conf"; sourceTree = "<group>"; };
 		B218C6AD201F43AE00FD9CFC /* httpd-h2.conf.in */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "httpd-h2.conf.in"; sourceTree = "<group>"; };
 		B218C6AE201F43AE00FD9CFC /* NEWS */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = NEWS; sourceTree = "<group>"; };
+		B218C6AF201F4BF900FD9CFC /* httpd-2.4.x.patch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "httpd-2.4.x.patch"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
@@ -47,8 +46,8 @@
 		B21871C4201F434600FD9CFC /* httpd */ = {
 			isa = PBXGroup;
 			children = (
+				B218C6AF201F4BF900FD9CFC /* httpd-2.4.x.patch */,
 				B21888D8201F435000FD9CFC /* Makefile.am */,
-				B21888D9201F435000FD9CFC /* httpd-branches-2.4.x.patch */,
 			);
 			path = httpd;
 			sourceTree = "<group>";
@@ -72,7 +71,6 @@
 		B218C6AB201F43AE00FD9CFC /* conf */ = {
 			isa = PBXGroup;
 			children = (
-				B218C6AC201F43AE00FD9CFC /* httpd-h2.conf */,
 				B218C6AD201F43AE00FD9CFC /* httpd-h2.conf.in */,
 			);
 			path = conf;
