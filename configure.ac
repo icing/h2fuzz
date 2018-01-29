@@ -14,7 +14,7 @@
 #
 
 AC_PREREQ([2.67])
-AC_INIT([h2fuzz], [0.0.1-DEV], [stefan.eissing@greenbytes.de])
+AC_INIT([h2fuzz], [0.0.2-DEV], [stefan.eissing@greenbytes.de])
 
 LT_PREREQ([2.2.6])
 LT_INIT()

@@ -95,7 +95,7 @@ $(GEN)/.patched: \
 	@echo -n patching httpd...
 	rm -f $(GEN)/$(HTTPD_DIR)/compile.sh
 	svn revert -R $(GEN)/$(HTTPD_DIR)/
-	patch -p1 -d $(GEN)/$(HTTPD_DIR)/  < httpd-$(HTTPD_BRANCH).patch
+	test -f httpd-$(HTTPD_BRANCH).patch && patch -p1 -d $(GEN)/$(HTTPD_DIR)/  < httpd-$(HTTPD_BRANCH).patch
 	@echo done.
 	@touch $(GEN)/.patched
 

@@ -1,0 +1,275 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 48;
+	objects = {
+
+/* Begin PBXFileReference section */
+		B21871C3201F434600FD9CFC /* aclocal.m4 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = aclocal.m4; sourceTree = "<group>"; };
+		B21888D8201F435000FD9CFC /* Makefile.am */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Makefile.am; sourceTree = "<group>"; };
+		B21888D9201F435000FD9CFC /* httpd-branches-2.4.x.patch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "httpd-branches-2.4.x.patch"; sourceTree = "<group>"; };
+		B21888DB201F435000FD9CFC /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		B21888DC201F435000FD9CFC /* Makefile.am */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Makefile.am; sourceTree = "<group>"; };
+		B21888DD201F435000FD9CFC /* COPYING */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = COPYING; sourceTree = "<group>"; };
+		B2188DA4201F435200FD9CFC /* Makefile.am */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Makefile.am; sourceTree = "<group>"; };
+		B2188DA6201F435200FD9CFC /* AUTHORS */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = AUTHORS; sourceTree = "<group>"; };
+		B2188DA7201F435200FD9CFC /* configure.ac */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = configure.ac; sourceTree = "<group>"; };
+		B2188DA8201F435300FD9CFC /* ChangeLog */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ChangeLog; sourceTree = "<group>"; };
+		B218C6A8201F43AC00FD9CFC /* Makefile.am */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Makefile.am; sourceTree = "<group>"; };
+		B218C6AA201F43AD00FD9CFC /* README */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README; sourceTree = "<group>"; };
+		B218C6AC201F43AE00FD9CFC /* httpd-h2.conf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "httpd-h2.conf"; sourceTree = "<group>"; };
+		B218C6AD201F43AE00FD9CFC /* httpd-h2.conf.in */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "httpd-h2.conf.in"; sourceTree = "<group>"; };
+		B218C6AE201F43AE00FD9CFC /* NEWS */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = NEWS; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+		B21871B8201F42B800FD9CFC = {
+			isa = PBXGroup;
+			children = (
+				B21871C3201F434600FD9CFC /* aclocal.m4 */,
+				B2188DA6201F435200FD9CFC /* AUTHORS */,
+				B2188DA8201F435300FD9CFC /* ChangeLog */,
+				B218C6AB201F43AE00FD9CFC /* conf */,
+				B2188DA7201F435200FD9CFC /* configure.ac */,
+				B21888DD201F435000FD9CFC /* COPYING */,
+				B2188DA9201F435300FD9CFC /* honggfuzz */,
+				B21871C4201F434600FD9CFC /* httpd */,
+				B21888DC201F435000FD9CFC /* Makefile.am */,
+				B218C6AE201F43AE00FD9CFC /* NEWS */,
+				B21888DE201F435100FD9CFC /* nghttp2 */,
+				B218C6AA201F43AD00FD9CFC /* README */,
+				B21888DB201F435000FD9CFC /* README.md */,
+			);
+			sourceTree = "<group>";
+		};
+		B21871C4201F434600FD9CFC /* httpd */ = {
+			isa = PBXGroup;
+			children = (
+				B21888D8201F435000FD9CFC /* Makefile.am */,
+				B21888D9201F435000FD9CFC /* httpd-branches-2.4.x.patch */,
+			);
+			path = httpd;
+			sourceTree = "<group>";
+		};
+		B21888DE201F435100FD9CFC /* nghttp2 */ = {
+			isa = PBXGroup;
+			children = (
+				B2188DA4201F435200FD9CFC /* Makefile.am */,
+			);
+			path = nghttp2;
+			sourceTree = "<group>";
+		};
+		B2188DA9201F435300FD9CFC /* honggfuzz */ = {
+			isa = PBXGroup;
+			children = (
+				B218C6A8201F43AC00FD9CFC /* Makefile.am */,
+			);
+			path = honggfuzz;
+			sourceTree = "<group>";
+		};
+		B218C6AB201F43AE00FD9CFC /* conf */ = {
+			isa = PBXGroup;
+			children = (
+				B218C6AC201F43AE00FD9CFC /* httpd-h2.conf */,
+				B218C6AD201F43AE00FD9CFC /* httpd-h2.conf.in */,
+			);
+			path = conf;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXLegacyTarget section */
+		B21871BD201F42B800FD9CFC /* h2fuzz */ = {
+			isa = PBXLegacyTarget;
+			buildArgumentsString = "$(ACTION)";
+			buildConfigurationList = B21871C0201F42B800FD9CFC /* Build configuration list for PBXLegacyTarget "h2fuzz" */;
+			buildPhases = (
+			);
+			buildToolPath = /usr/bin/make;
+			dependencies = (
+			);
+			name = h2fuzz;
+			passBuildSettingsInEnvironment = 1;
+			productName = h2fuzz;
+		};
+/* End PBXLegacyTarget section */
+
+/* Begin PBXProject section */
+		B21871B9201F42B800FD9CFC /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0920;
+				ORGANIZATIONNAME = "greenbytes GmbH";
+				TargetAttributes = {
+					B21871BD201F42B800FD9CFC = {
+						CreatedOnToolsVersion = 9.2;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = B21871BC201F42B800FD9CFC /* Build configuration list for PBXProject "h2fuzz" */;
+			compatibilityVersion = "Xcode 8.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = B21871B8201F42B800FD9CFC;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				B21871BD201F42B800FD9CFC /* h2fuzz */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin XCBuildConfiguration section */
+		B21871BE201F42B800FD9CFC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+			};
+			name = Debug;
+		};
+		B21871BF201F42B800FD9CFC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+			};
+			name = Release;
+		};
+		B21871C1201F42B800FD9CFC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEBUGGING_SYMBOLS = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		B21871C2201F42B800FD9CFC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		B21871BC201F42B800FD9CFC /* Build configuration list for PBXProject "h2fuzz" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B21871BE201F42B800FD9CFC /* Debug */,
+				B21871BF201F42B800FD9CFC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B21871C0201F42B800FD9CFC /* Build configuration list for PBXLegacyTarget "h2fuzz" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B21871C1201F42B800FD9CFC /* Debug */,
+				B21871C2201F42B800FD9CFC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = B21871B9201F42B800FD9CFC /* Project object */;
+}
