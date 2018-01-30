@@ -17,6 +17,7 @@ GEN             = gen
 CURL_OPTS       = -k --progress-bar
 
 HTTPD_BRANCH    = @HTTPD_BRANCH@
+HTTPD_ROOT      = @HTTPD_ROOT@
 HTTPD_DIR       = httpd-$(HTTPD_BRANCH)
 HTTPD_SVN_DIR   = @HTTPD_SVN_DIR@
 HTTPD_URL       = https://svn.apache.org/repos/asf/httpd/httpd/$(HTTPD_SVN_DIR)
@@ -40,7 +41,7 @@ dirs:
 	@mkdir -p $(GEN)/build
 
 clean:
-	@rm -rf $(GEN)/.installed $(GEN)/.built
+	@rm -rf $(GEN)/.built $(GEN)/.configured $(HTTPD_ROOT)/.installed
 	-@cd $(GEN)/$(HTTPD_DIR) && make clean
 
 distclean:
@@ -50,7 +51,7 @@ distdir:
 	@mkdir -p $(distdir)
 	@tar cf - Makefile patches | (cd $(distdir) && tar xf - )
 
-install:  $(GEN)/.installed
+install:  $(HTTPD_ROOT)/.installed
 
 update:
 	@echo "svn update $(HTTPD_DIR)..."
@@ -58,15 +59,14 @@ update:
 	@svn update $(GEN)/$(HTTPD_DIR)/srclib/apr
 	@svn update $(GEN)/$(HTTPD_DIR)//srclib/apr-util
 	
-
 ################################################################################
 # Install the local httpd
 #
-$(GEN)/.installed:  $(GEN)/.built
+$(HTTPD_ROOT)/.installed:  $(GEN)/.built
 	@echo -n installing httpd locally...
 	@cd $(GEN)/$(HTTPD_DIR)/ && make install
 	@echo done.
-	@touch $(GEN)/.installed
+	@touch $(HTTPD_ROOT)/.installed
 
 ################################################################################
 # Build the local httpd
