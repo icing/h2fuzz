@@ -1,17 +1,120 @@
-Index: server/main.c
-===================================================================
---- server/main.c	(revision 1822092)
-+++ server/main.c	(working copy)
-@@ -484,7 +484,11 @@
-     destroy_and_exit_process(process, 1);
+diff --git a/configure.in b/configure.in
+index b20aad0..eec5ba2 100644
+--- a/configure.in
++++ b/configure.in
+@@ -725,7 +725,7 @@ AC_MSG_CHECKING([for Check to enable unit tests])
+ if test "x$PKGCONFIG" != "x" && `$PKGCONFIG --atleast-version='0.9.12' check`; then
+   UNITTEST_CFLAGS=`$PKGCONFIG --cflags check`
+   UNITTEST_LIBS=`$PKGCONFIG --libs check`
+-  other_targets="$other_targets test/httpdunit"
++  other_targets="$other_targets"
+ 
+   AC_MSG_RESULT([yes])
+ else
+diff --git a/hfuzz.compile_and_install.asan.sh b/hfuzz.compile_and_install.asan.sh
+new file mode 100755
+index 0000000..f8a9a41
+--- /dev/null
++++ b/hfuzz.compile_and_install.asan.sh
+@@ -0,0 +1,63 @@
++#!/bin/sh
++
++set -ex
++
++# Directory with honggfuzz installation
++HFUZZ_DIR="/home/jagger/src/honggfuzz"
++# Change this to a directory where apache should be installed into
++INSTALL_PREFIX="$(realpath "$PWD/../dist")"
++NGHTTP2_VER=1.33.0
++APR_VER=1.6.5
++APR_UTIL_VER=1.6.1
++CFLAGS_SAN="-fsanitize=address -O3 -ggdb"
++# Another viable option: few
++APACHE_MODULES=most
++
++NGHTTP2_PATH="$(realpath "$PWD/../nghttp2-$NGHTTP2_VER")/"
++APR_PATH="$(realpath "$PWD/../apr-$APR_VER")"
++APR_UTIL_PATH="$(realpath "$PWD/../apr-util-$APR_UTIL_VER")/"
++
++export CC="$HFUZZ_DIR/hfuzz_cc/hfuzz-clang"
++export CXX="$HFUZZ_DIR/hfuzz_cc/hfuzz-clang++"
++
++echo "Compiling APR"
++cd "$APR_PATH"
++CFLAGS="$CFLAGS_SAN" ./configure --disable-shared --enable-static
++make clean
++make -j$(nproc)
++cd -
++
++echo "Compiling APR-UTIL"
++cd "$APR_UTIL_PATH"
++CFLAGS="$CFLAGS_SAN" ./configure --with-apr="$APR_PATH" --disable-shared --enable-static
++make clean
++make -j$(nproc)
++cd -
++
++echo "Compiling NGHTTP2"
++cd "$NGHTTP2_PATH"
++CFLAGS="$CFLAGS_SAN" CXXFLAGS="$CFLAGS_SAN" ./configure --disable-shared --enable-static
++make clean
++make -j$(nproc)
++cd -
++
++echo "Install PATH: $INSTALL_PREFIX"
++./buildconf --with-apr="$APR_PATH" --with-apr-util="$APR_UTIL_PATH"
++
++echo "Compiling HTTPD"
++CFLAGS="-I$NGHTTP2_PATH/lib/includes $CFLAGS_SAN -ggdb -O3" LDFLAGS="-L$NGHTTP2_PATH/lib -lpthread" \
++./configure \
++        --prefix="$INSTALL_PREFIX" \
++        --with-nghttp2="$NGHTTP2_PATH/" \
++        --enable-http2 \
++        --enable-nghttp2-staticlib-deps \
++        --with-mpm=event \
++        --enable-unixd \
++        --disable-pie \
++        --disable-ssl \
++        --enable-mods-static=$APACHE_MODULES \
++        --with-apr="$APR_PATH" \
++        --with-apr-util="$APR_UTIL_PATH"
++make clean
++make -j$(nproc)
++make install
+diff --git a/modules/generators/mod_autoindex.c b/modules/generators/mod_autoindex.c
+index c887056..1be2d16 100644
+--- a/modules/generators/mod_autoindex.c
++++ b/modules/generators/mod_autoindex.c
+@@ -1907,6 +1907,8 @@ static void output_directories(struct ent **ar, int n,
+ 
+ static int dsortf(struct ent **e1, struct ent **e2)
+ {
++    return 0;
++
+     struct ent *c1;
+     struct ent *c2;
+     int result = 0;
+diff --git a/server/request.c b/server/request.c
+index 70812fe..b62272e 100644
+--- a/server/request.c
++++ b/server/request.c
+@@ -1393,7 +1393,7 @@ AP_DECLARE(int) ap_directory_walk(request_rec *r)
+     return OK;
  }
  
--int main(int argc, const char * const argv[])
-+#ifdef HFND_FUZZING_ENTRY_FUNCTION
-+ HFND_FUZZING_ENTRY_FUNCTION(int argc, const char *const *argv)
-+#else
-+ int main(int argc, const char *const *argv)
-+#endif
+-
++__attribute__((no_sanitize("memory")))
+ AP_DECLARE(int) ap_location_walk(request_rec *r)
  {
-     char c;
-     int showcompile = 0, showdirectives = 0;
+     ap_conf_vector_t *now_merged = NULL;
+diff --git a/server/util_pcre.c b/server/util_pcre.c
+index 8254cc4..ef70c43 100644
+--- a/server/util_pcre.c
++++ b/server/util_pcre.c
+@@ -388,6 +388,7 @@ AP_DECLARE(int) ap_regexec_len(const ap_regex_t *preg, const char *buff,
+     }
+ }
+ 
++__attribute__((no_sanitize("memory")))
+ AP_DECLARE(int) ap_regname(const ap_regex_t *preg,
+                            apr_array_header_t *names, const char *prefix,
+                            int upper)

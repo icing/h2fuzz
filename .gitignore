@@ -34,3 +34,4 @@ gen
 HONGGFUZZ.REPORT.TXT
 *.fuzz
 h2fuzz.xcodeproj/xcuserdata
+h2fuzz.xcodeproj/project.xcworkspace/xcshareddata

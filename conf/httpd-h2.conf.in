@@ -13,7 +13,7 @@ LogLevel debug
 Listen 127.0.0.1:8080
 # a global pid file helps if you have several installations
 #PidFile @HTTPD_ROOT@/apache-pid
-PidFile /tmp/FUZZ/apache-pid
+PidFile apache-pid
 #Protocols h2 h2c http/1.1
 Protocols h2c
 H2Direct on

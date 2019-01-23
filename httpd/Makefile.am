@@ -45,7 +45,7 @@ clean:
 	-@cd $(GEN)/$(HTTPD_DIR) && make clean
 
 distclean:
-	@rm -rf $(GEN)
+	@rm -rf $(GEN) $(HTTPD_ROOT)
 
 distdir:
 	@mkdir -p $(distdir)
