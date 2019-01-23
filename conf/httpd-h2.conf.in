@@ -1,5 +1,6 @@
 ServerRoot "@HTTPD_ROOT@"
 ServerName 127.0.0.1
+MaxMemFree 1
 Timeout 300
 KeepAlive On
 MaxKeepAliveRequests 100
