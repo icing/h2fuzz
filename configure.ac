@@ -14,7 +14,7 @@
 #
 
 AC_PREREQ([2.67])
-AC_INIT([h2fuzz], [0.0.2-DEV], [stefan.eissing@greenbytes.de])
+AC_INIT([h2fuzz], [0.1.0-DEV], [stefan.eissing@greenbytes.de])
 
 LT_PREREQ([2.2.6])
 LT_INIT()
@@ -38,7 +38,7 @@ AC_CANONICAL_TARGET
 
 AC_CONFIG_MACRO_DIR([m4])
 
-AM_INIT_AUTOMAKE([subdir-objects no-define])
+AM_INIT_AUTOMAKE([subdir-objects no-define -Wall -Wportability])
 AM_EXTRA_RECURSIVE_TARGETS([update])
 
 m4_ifdef([AM_SILENT_RULES], [AM_SILENT_RULES([yes])])
@@ -75,7 +75,7 @@ HONGGFUZZ="${HF_HOME}/honggfuzz"
 # nghttp2 
 ################################################################################
 
-NGHTTP2_VERSION=1.29.0
+NGHTTP2_VERSION=1.36.0
 NGHTTP2_DEPS=""
 
 BUILD_SUBDIRS="$BUILD_SUBDIRS nghttp2"
@@ -86,9 +86,10 @@ INSTALL_ADDITIONAL="$INSTALL_ADDITIONAL nghttp2($NGHTTP2_VERSION)"
 # httpd 
 ################################################################################
 
-#HTTPD_BRANCH=trunk
-HTTPD_BRANCH=2.4.x
-HTTPD_SVN_DIR=branches/2.4.x
+HTTPD_BRANCH=trunk
+HTTPD_SVN_DIR=trunk
+#HTTPD_BRANCH=2.4.x
+#HTTPD_SVN_DIR=branches/2.4.x
 HTTPD_ROOT="${prefix}"
 
 BUILD_SUBDIRS="$BUILD_SUBDIRS httpd"
@@ -135,6 +136,7 @@ AC_CONFIG_FILES([
     nghttp2/Makefile
     httpd/Makefile
     conf/httpd-h2.conf
+    conf/httpd-h2-rs-1.conf
 ])
 
 AC_OUTPUT

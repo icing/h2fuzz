@@ -34,7 +34,9 @@ HF_APACHE      = @HF_HOME@/examples/apache
 .PHONY: clean update
 
 
-all: install
+all: setup
+
+setup: install $(H2_CONF_FILES)
 
 distdir:
 	@mkdir -p $(distdir)
@@ -42,13 +44,21 @@ distdir:
 
 update: update-recursive
 
+H2_CONF_FILES = \
+	$(HTTPD_ROOT)/conf/craig.conf \
+	$(HTTPD_ROOT)/conf/httpd-h2.conf \
+	$(HTTPD_ROOT)/conf/httpd-h2-rs-1.conf
 
-fuzz: install $(HTTPD_ROOT)/conf/httpd-h2.conf
+$(HTTPD_ROOT)/conf/%.conf: conf/%.conf
+	@mkdir -p $(HTTPD_ROOT)/conf
+	@cp $< $(HTTPD_ROOT)/conf/
+
+fuzz: setup
 	@rm -f $(HTTPD_ROOT)/logs/*log
 	$(HONGGFUZZ) -z -P -f $(HF_APACHE)/corpus_http2 -w $(HF_APACHE)/httpd.wordlist -- \
 		$(HTTPD_ROOT)/bin/httpd -X -f conf/httpd-h2.conf
 
-$(HTTPD_ROOT)/conf/httpd-h2.conf: conf/httpd-h2.conf
-	@mkdir -p $(HTTPD_ROOT)/conf
-	@cp conf/httpd-h2.conf $(HTTPD_ROOT)/conf/
-
+fuzz-rs-1: setup
+	@rm -f $(HTTPD_ROOT)/logs/*log
+	$(HONGGFUZZ) -z -P -f $(HF_APACHE)/corpus_rs_1 -w $(HF_APACHE)/httpd.wordlist -- \
+		$(HTTPD_ROOT)/bin/httpd -X -f conf/httpd-h2-rs-1.conf

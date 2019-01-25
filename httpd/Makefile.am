@@ -23,11 +23,12 @@ HTTPD_SVN_DIR   = @HTTPD_SVN_DIR@
 HTTPD_URL       = https://svn.apache.org/repos/asf/httpd/httpd/$(HTTPD_SVN_DIR)
 
 HTTPD_CONF      = --prefix=$(prefix) \
+	--enable-maintainer-mode \
 	--enable-nghttp2-staticlib-deps \
 	--with-nghttp2=$(prefix) \
 	--with-mpm=event --enable-unixd --disable-pie \
-	--enable-mods-static=few \
-	--enable-http2 
+	--enable-mods-static=most \
+	--enable-http2 --enable-cache --enable-cache-socache --enable-socache-shmcb --disable-ssl 
 
 #HTTPD_CONF_ENV  = CC="@HF_CC@" CXX="@HF_CC@" CFLAGS="-ggdb O3 -fsanitize=address" LDFLAGS="-lpthread -lasan"
 HTTPD_CONF_ENV  = CC="@HF_CC@" CXX="@HF_CC@" CFLAGS="@HF_CFLAGS@" LDFLAGS="@HF_CFLAGS@"

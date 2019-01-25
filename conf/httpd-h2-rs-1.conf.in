@@ -1,0 +1,98 @@
+Protocols h2c
+ServerRoot "@HTTPD_ROOT@"
+DocumentRoot "@HTTPD_ROOT@/htdocs"
+ServerName 127.0.0.1
+CacheEnable socache /
+CacheSocache shmcb:/tmp/FUZZ/data
+HostnameLookups Off
+#ErrorLog /dev/fd/1
+LogLevel info
+Listen 127.0.0.1:8080
+PidFile /tmp/FUZZ/apache-pid
+H2Direct on
+H2CopyFiles on
+H2EarlyHints on
+H2ModernTLSOnly off
+H2Push on
+H2SerializeHeaders on
+H2Upgrade on
+MaxMemFree 1
+ScoreBoardFile /tmp/FUZZ/scoreboard
+ServerTokens Full
+TraceEnable on
+ExtendedStatus On
+ContentDigest On
+AcceptPathInfo On
+AddDefaultCharset On
+AllowEncodedSlashes On
+MergeTrailers on
+QualifyRedirectURL On
+SeeRequestTail On
+ServerSignature On
+Options All
+ScriptAlias "/cgi-bin/" "@HTTPD_ROOT@/cgi-bin/"
+Alias "/ab" "/"
+Redirect "/abc" "/"
+RedirectMatch "(.*)\.gif$" "/image/$1.jpg"
+UseCanonicalPhysicalPort On
+HttpProtocolOptions Unsafe LenientMethods Allow0.9
+DavLockDB /tmp/FUZZ/dav.lock
+ProxyStatus On
+ProxyVia On
+Header set MyHeader "%D %t"
+Header set Set-Cookie testcookie "expr=-z %{req:Cookie}"
+DirectoryCheckHandler On
+DirectoryIndexRedirect On
+FallbackResource /index.html
+AllowCONNECT 443
+RequestReadTimeout header=1 body=1
+UserDir enabled user1 user2 user3 jagger
+ExpiresByType text/html "access plus 1 month 15 days 2 hours"
+ExpiresByType image/gif "modification plus 5 hours 3 minutes"
+ExpiresActive On
+ExpiresByType text/html M604800
+ScriptSock /tmp/FUZZ/cgid.sock
+CGIDScriptTimeout 1ms
+<Directory />
+    Options FollowSymLinks
+    AllowOverride None
+</Directory>
+<LocationMatch "/app/(?<NUMBER>[0-9]+)">
+    SetHandler "fcgi://localhost:8080/app_%{env:MATCH_NUMBER}"
+</LocationMatch>
+<Directory @HTTPD_ROOT@/htdocs>
+    Options All MultiViews
+    AllowOverride None
+</Directory>
+<Directory @HTTPD_ROOT@/htdocs/private>
+    DAV On
+    AuthType Basic
+    AuthName DAV
+    Options All MultiViews
+    AllowOverride None
+</Directory>
+<Directory @HTTPD_ROOT@/cgi-bin>
+    Options All MultiViews
+    AllowOverride None
+</Directory>
+<Location "/server-status">
+    SetHandler server-status
+    AuthType Digest
+    AuthName "private"
+    AuthDigestDomain "/private/" "http://mirror.my.dom/private2/"
+    AuthDigestProvider file
+    AuthUserFile "@HTTPD_ROOT@/digest_pw"
+    Require valid-user
+    <Limit OPTIONS>
+        Require host localhost
+    </Limit>
+</Location>
+<LocationMatch "/error/(?<NUMBER>[0-9]+)">
+    Redirect permanent "/%{env:MATCH_NUMBER}.html"
+</LocationMatch>
+<Location "/proxy/">
+    ProxyPass "http://127.0.0.1:8080/index.html"
+    SetEnv force-proxy-request-1.0 1
+    SetEnv proxy-nokeepalive 1
+</Location>
+

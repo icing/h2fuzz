@@ -28,3 +28,6 @@ H2SerializeHeaders on
 	Options Indexes FollowSymLinks
 	AllowOverride None
 </Directory>
+
+CacheEnable socache /
+CacheSocache shmcb:/tmp/FUZZ/data

@@ -1,0 +1,37 @@
+Index: modules/generators/mod_autoindex.c
+===================================================================
+--- modules/generators/mod_autoindex.c	(revision 1852006)
++++ modules/generators/mod_autoindex.c	(working copy)
+@@ -1911,6 +1911,7 @@
+     struct ent *c2;
+     int result = 0;
+
++    return 0;
+     /*
+      * First, see if either of the entries is for the parent directory.
+      * If so, that *always* sorts lower than anything else.
+Index: server/request.c
+===================================================================
+--- server/request.c    (revision 1851902)
++++ server/request.c    (working copy)
+@@ -1389,7 +1389,7 @@
+     return OK;
+ }
+
+-
++__attribute__((no_sanitize("memory")))
+ AP_DECLARE(int) ap_location_walk(request_rec *r)
+ {
+     ap_conf_vector_t *now_merged = NULL;
+Index: server/util_pcre.c
+===================================================================
+--- server/util_pcre.c    (revision 1851902)
++++ server/util_pcre.c    (working copy)
+@@ -301,6 +301,7 @@
+     }
+ }
+
++__attribute__((no_sanitize("memory")))
+ AP_DECLARE(int) ap_regname(const ap_regex_t *preg,
+                            apr_array_header_t *names, const char *prefix,
+                            int upper)
